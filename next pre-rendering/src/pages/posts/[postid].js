@@ -9,7 +9,7 @@ function PostDetails({ post }) {
         </div>
         <p className="">{post.body}</p>
       </div>
-    </>
+    </> 
   );
 }
 

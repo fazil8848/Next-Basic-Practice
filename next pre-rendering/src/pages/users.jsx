@@ -27,5 +27,5 @@ export async function getStaticProps() {
     props: {
       users: data,
     },
-  };
+  }; 
 }
