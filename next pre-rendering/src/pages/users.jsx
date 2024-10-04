@@ -15,7 +15,6 @@ function UserList({ users }) {
         );
       })}
     </>
-    
   );
 }
 
@@ -27,5 +26,5 @@ export async function getStaticProps() {
     props: {
       users: data,
     },
-  }; 
+  };
 }

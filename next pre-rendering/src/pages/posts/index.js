@@ -10,8 +10,8 @@ function PostList({ posts }) {
             <Link href={`/posts/${post.id}`} className="text-xl text-slate-50">
               {post.id} | {post.title}
             </Link>
-            <hr /> 
-          </div> 
+            <hr />
+          </div>
         );
       })}
     </>
