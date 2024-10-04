@@ -10,10 +10,11 @@ function Home() {
     <>
       <div className="text-3xl">Next JS pre-rendering</div>
       <Link href={"/users"}> User List</Link>
+      <br />
+      <Link href={"/posts"}> Post List</Link>
       {/* <button onClick={handleClick}>User List</button> */}
     </>
   );
-  
 }
 
 export default Home;
