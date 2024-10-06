@@ -14,6 +14,8 @@ function PostList({ posts }) {
           </div>
         );
       })}
+
+      
     </>
   );
 }
