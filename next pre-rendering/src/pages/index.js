@@ -14,7 +14,6 @@ function Home() {
       <Link href={"/posts"}> Post List</Link>
       {/* <button onClick={handleClick}>User List</button> */}
     </>
-
     
   );
 }
