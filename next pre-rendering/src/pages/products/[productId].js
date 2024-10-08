@@ -31,16 +31,11 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const { params } = context;
-  console.log(params);
 
   const response = await fetch(
     `http://localhost:4000/products/${params.productId}`
   );
   const data = await response.json();
-
-  console.log("--------");
-  console.log(data);
-  console.log("--------");
 
   return {
     props: {
