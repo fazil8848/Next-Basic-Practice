@@ -31,7 +31,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const { params } = context;
-  console.log(`Regenrating product page for ${params.productId}`);
   const response = await fetch(
     `http://localhost:4000/products/${params.productId}`
   );
