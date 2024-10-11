@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function NewsArticleList({ articles }) {
   return (
     <>
@@ -6,7 +8,11 @@ function NewsArticleList({ articles }) {
         return (
           <div key={article.id}>
             <p>
-              {article.id} :- {article.title} | {article.category}
+              {article.id} :- {article.title} |{" "}
+              <Link href={`/news/${article.category}`}>
+                {" "}
+                {article.category}
+              </Link>
             </p>
           </div>
         );
