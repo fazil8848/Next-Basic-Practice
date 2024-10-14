@@ -1,22 +1,26 @@
 import Link from "next/link";
-// import { useRouter } from "next/router";
 
 function Home() {
-  // const router = useRouter();
-  // const handleClick = () => {
-  //   router.push("/users");
-  // };
   return (
     <>
-      <div className="text-3xl">Next JS pre-rendering</div>
+      <div className="text-3xl">
+        <u>Next JS Practice</u>{" "}
+      </div>
+      <br />
       <Link href={"/users"}> User List</Link>
-      <br />
+      <br /> <hr />
       <Link href={"/posts"}> Post List</Link>
-      <br />
+      <br /> <hr />
       <Link href={"/products"}> Product List</Link>
-      <br />
-      <Link href={"/news"}> Product List</Link>
-      {/* <button onClick={handleClick}>User List</button> */}
+      <br /> <hr />
+      <Link href={"/news"}> News List</Link>
+      <br /> <hr />
+      <Link href={"/dashboard"}> Dashboard</Link>
+      <br /> <hr />
+      <Link href={"/dashboard-swr"}> Dashboard SWR</Link>
+      <br /> <hr />
+      <Link href={"/event"}> Event List</Link>
+      <br /> <hr />
     </>
   );
 }
