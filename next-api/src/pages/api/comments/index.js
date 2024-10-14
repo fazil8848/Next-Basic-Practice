@@ -11,7 +11,7 @@ export default function handler(req, res) {
       id: Date.now(),
       text: comment,
     };
-
+    
     comments.push(newComment);
     res.status(201).json(newComment);
   }

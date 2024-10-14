@@ -20,11 +20,25 @@ function CommentsPage() {
     });
     const data = await response.json();
     console.log(data);
+    setComment("");
   };
+
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
+    const response = await fetch(`/api/comments/${id}`, {
+      method: "DELETE",
+    });
+
+    const data = await response.json();
+    console.log(data);
+    setComments(data);
+  };
+
   return (
     <>
       <br />
       <input
+        value={comment}
         onChange={(e) => setComment(e.target.value)}
         type="text"
         className="m-4 text-black"
@@ -38,7 +52,8 @@ function CommentsPage() {
       <br />
       {comments.map((comment) => (
         <div key={comment.id} className="">
-          {comment.text}
+          {comment.text} |{" "}
+          <button onClick={(e) => handleDelete(e, comment.id)}>Delete </button>
         </div>
       ))}
     </>
