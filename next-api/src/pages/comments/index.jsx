@@ -3,6 +3,7 @@ import { useState } from "react";
 function CommentsPage() {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
+
   const fetchCommnets = async () => {
     const response = await fetch("/api/comments");
     const data = await response.json();
@@ -31,7 +32,7 @@ function CommentsPage() {
 
     const data = await response.json();
     console.log(data);
-    setComments(data);
+    fetchCommnets();
   };
 
   return (
@@ -54,6 +55,7 @@ function CommentsPage() {
         <div key={comment.id} className="">
           {comment.text} |{" "}
           <button onClick={(e) => handleDelete(e, comment.id)}>Delete </button>
+          <button onClick={(e) => handleUpdate(e, comment.id)}>Update </button>
         </div>
       ))}
     </>
