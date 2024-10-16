@@ -3,6 +3,8 @@ import { useState } from "react";
 function CommentsPage() {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [editComment, setEditComment] = useState("");
+  const [editingId, setEditingId] = useState(0);
 
   const fetchCommnets = async () => {
     const response = await fetch("/api/comments");
@@ -35,6 +37,21 @@ function CommentsPage() {
     fetchCommnets();
   };
 
+  const handleUpdate = async (e, id) => {
+    e.preventDefault();
+    const response = await fetch(`/api/comments/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ editComment }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    fetchCommnets();
+    setEditingId(0);
+  };
+
   return (
     <>
       <br />
@@ -42,7 +59,7 @@ function CommentsPage() {
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         type="text"
-        className="m-4 text-black"
+        className="m-4 text-black rounded-md"
       />
       <button onClick={handleCommentSubmit}> Submit Comment</button>
       <br />
@@ -53,9 +70,35 @@ function CommentsPage() {
       <br />
       {comments.map((comment) => (
         <div key={comment.id} className="">
-          {comment.text} |{" "}
-          <button onClick={(e) => handleDelete(e, comment.id)}>Delete </button>
-          <button onClick={(e) => handleUpdate(e, comment.id)}>Update </button>
+          {comment.text}{" "}
+          <button
+            className="border p-1 rounded-md"
+            onClick={(e) => handleDelete(e, comment.id)}
+          >
+            Delete
+          </button>{" "}
+          <button
+            className="border p-1 rounded-md"
+            onClick={() => setEditingId(comment.id)}
+          >
+            Edit
+          </button>{" "}
+          {editingId === comment.id && (
+            <>
+              <input
+                // value={comment.text}
+                onChange={(e) => setEditComment(e.target.value)}
+                type="text"
+                className="m-4 text-black rounded-md"
+              />{" "}
+              <button
+                className="border p-1 rounded-md"
+                onClick={(e) => handleUpdate(e, comment.id)}
+              >
+                Update
+              </button>
+            </>
+          )}
         </div>
       ))}
     </>
