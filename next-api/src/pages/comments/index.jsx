@@ -9,7 +9,7 @@ function CommentsPage() {
   const fetchCommnets = async () => {
     const response = await fetch("/api/comments");
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     setComments(data);
   };
 
@@ -21,8 +21,8 @@ function CommentsPage() {
         "Content-Type": "application/json",
       },
     });
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
+    // console.log(data);
     setComment("");
   };
 
@@ -37,6 +37,12 @@ function CommentsPage() {
     fetchCommnets();
   };
 
+  const handleEnableEdit = (e, current) => {
+    e.preventDefault();
+    setEditingId(current.id);
+    setEditComment(current);
+  };
+
   const handleUpdate = async (e, id) => {
     e.preventDefault();
     const response = await fetch(`/api/comments/${id}`, {
@@ -46,8 +52,8 @@ function CommentsPage() {
         "Content-Type": "application/json",
       },
     });
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
+    // console.log(data);
     fetchCommnets();
     setEditingId(0);
   };
@@ -79,14 +85,14 @@ function CommentsPage() {
           </button>{" "}
           <button
             className="border p-1 rounded-md"
-            onClick={() => setEditingId(comment.id)}
+            onClick={(e) => handleEnableEdit(e, comment)}
           >
             Edit
           </button>{" "}
           {editingId === comment.id && (
             <>
               <input
-                // value={comment.text}
+                value={editComment.text}
                 onChange={(e) => setEditComment(e.target.value)}
                 type="text"
                 className="m-4 text-black rounded-md"
